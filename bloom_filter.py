@@ -11,6 +11,7 @@ import numpy as np
 seed = 42
 min_value=0
 max_value=sys.maxsize
+disable_tqdm = True
 ############## global parameters #############
 
 np.random.seed(seed)
@@ -97,8 +98,6 @@ def test_bloom(bloom_filter, inserted_set, query_time=int(1e5), test_type="rando
 
     inserted_list = list(inserted_set)
 
-    disable_tqdm = False
-
     assert test_type in ["random", "inside", "outside"]
     fail_cnt = 0
     for i in tqdm(range(query_time), desc="querying", disable=disable_tqdm):
@@ -126,7 +125,7 @@ def run_bloom(m, n, k, query_time=int(1e5), dp=False, eps_0=None):
 
     # store ground truth
     inserted_set = []
-    for i in tqdm(range(n), desc="inserting"):
+    for i in tqdm(range(n), desc="inserting", disable=disable_tqdm):
         inserted_value = random.randint(min_value, max_value)
         bloom_filter.add(inserted_value)
         inserted_set.append(inserted_value)
