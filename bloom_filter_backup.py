@@ -6,7 +6,6 @@ import random
 import sys
 from tqdm import tqdm
 import numpy as np
-import json
 
 ############## global parameters #############
 seed = 42
@@ -115,16 +114,10 @@ def test_bloom(bloom_filter, inserted_set, query_time=int(1e5), test_type="rando
         if bloom_answer != gt_answer:
             fail_cnt += 1
 
-    fail_ratio = (fail_cnt / query_time) * 100
-
     print("-" * 50)
     print(f"{test_type} Fail count: {fail_cnt}")
-    print(f"{test_type} Fail ratio: {fail_ratio}%")
+    print(f"{test_type} Fail ratio: {(fail_cnt / query_time) * 100}%")
     print("-" * 50)
-
-    return fail_ratio
-
-    
 
 def run_bloom(m, n, k, query_time=int(1e5), dp=False, eps_0=None):
 
@@ -145,38 +138,28 @@ def run_bloom(m, n, k, query_time=int(1e5), dp=False, eps_0=None):
 
         bloom_filter.bitarray_ratio(msg="after flip")
 
-    test_type_list = ["random", "inside", "outside"]
-    test_result_dict = {}
-    for test_type in test_type_list:
-        test_result = test_bloom(bloom_filter, inserted_set, query_time, test_type=test_type)
-        test_result_dict[test_type] = test_result
 
-    return test_result_dict
+    test_bloom(bloom_filter, inserted_set, query_time, test_type="random")
+    print("before inside")
+    test_bloom(bloom_filter, inserted_set, query_time, test_type="inside")
+    print("after inside")
 
-
-    # test_bloom(bloom_filter, inserted_set, query_time, test_type="random")
-    # print("before inside")
-    # test_bloom(bloom_filter, inserted_set, query_time, test_type="inside")
-    # print("after inside")
-
-    # test_bloom(bloom_filter, inserted_set, query_time, test_type="outside")
+    test_bloom(bloom_filter, inserted_set, query_time, test_type="outside")
 
         
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--log2m", type=int, required=True)
+    parser.add_argument("--m_exp", type=int, required=True)
     parser.add_argument("--n", type=float, required=True)
     parser.add_argument("--k", type=int, default=None)
 
     parser.add_argument("--dp", type=str, default="False")
     parser.add_argument("--eps_0", type=float, default=None)
 
-    parser.add_argument("--output_path", type=str, default=None)
-
     args = parser.parse_args()
 
     # m = args.m
-    m = 2 ** args.log2m
+    m = 2 ** args.m_exp
     n = int(args.n)
 
     if args.k is not None:
@@ -201,11 +184,9 @@ if __name__ == "__main__":
     print(f"eps_0 {eps_0}")
     print("-" * 50)
 
-    test_result_dict = run_bloom(m, n, k, dp=dp, eps_0=eps_0)
+    run_bloom(m, n, k, dp=dp, eps_0=eps_0)
 
-    if args.output_path is not None:
-        with open(args.output_path, "w") as f:
-            json.dump(test_result_dict, f, indent=4)
+
 
 
 

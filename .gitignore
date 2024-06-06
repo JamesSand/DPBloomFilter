@@ -2,4 +2,7 @@ test.py
 note.txt
 logs/
 notebooks/figs/
+notebooks/pdfs/
+log_data/
+old_logs/
 
