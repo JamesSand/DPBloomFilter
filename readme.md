@@ -18,7 +18,7 @@ bash demo.sh
 `demo.sh` will create a folder named `log_data` and store its results in `log_data/demo.json`. And it will also output the result on the terminal. 
 
 If you open `log_data/demo.json`, you will get something like:
-```json
+```
 {
     "random": <Total Error Rate>,
     "inside": <True Negative Error Rate>,
