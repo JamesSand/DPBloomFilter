@@ -19,23 +19,20 @@ np.random.seed(seed)
 random.seed(seed)
 
 def create_hash_functions(k):
-    # 创建一个生成器函数，用于生成 k 个不同的哈希函数
+    # create a generator function, generate k different hash functions
     def hash_functionFactory(salt):
         def hash_function(number):
-            # print(type(str(number)))
-            # print(type(salt))
-            # breakpoint()
-            # 将数字和盐值组合成一个字符串
+            # combine number and salt into a str
             message = str(number) + str(salt)
-            # 对组合后的字符串进行编码并哈希
+            # hash the message using SHA256
             hash_object = hashlib.sha256(message.encode())
-            # 返回哈希值的整数形式
+            # convert the hash to an integer
             return int(hash_object.hexdigest(), 16)
         return hash_function
 
     salts = [i for i in range(k)]
     
-    # 为每个盐值创建一个哈希函数
+    # generate different hash function using different salt
     hash_functions = [hash_functionFactory(salt) for salt in salts]
     
     return hash_functions
