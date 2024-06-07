@@ -123,13 +123,13 @@ def test_bloom(bloom_filter, inserted_set, query_time=int(1e5), test_type="rando
 
     
 
-def run_bloom(m, n, k, query_time=int(1e5), dp=False, eps_0=None):
+def run_bloom(m, na, k, query_time=int(1e5), dp=False, eps_0=None):
 
     bloom_filter = DPBloomFilter(m, k, eps_0=eps_0)
 
     # store ground truth
     inserted_set = []
-    for i in tqdm(range(n), desc="inserting", disable=disable_tqdm):
+    for i in tqdm(range(na), desc="inserting", disable=disable_tqdm):
         inserted_value = random.randint(min_value, max_value)
         bloom_filter.add(inserted_value)
         inserted_set.append(inserted_value)
@@ -162,7 +162,7 @@ def run_bloom(m, n, k, query_time=int(1e5), dp=False, eps_0=None):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--log2m", type=int, required=True)
-    parser.add_argument("--n", type=float, required=True)
+    parser.add_argument("--na", type=float, required=True)
     parser.add_argument("--k", type=int, default=None)
 
     parser.add_argument("--dp", type=str, default="False")
@@ -174,12 +174,12 @@ if __name__ == "__main__":
 
     # m = args.m
     m = 2 ** args.log2m
-    n = int(args.n)
+    na = int(args.na)
 
     if args.k is not None:
         k = args.k
     else:
-        k = int(round((m / n) * math.log(2)))
+        k = int(round((m / na) * math.log(2)))
         if k == 0:
             k += 1
 
@@ -192,13 +192,13 @@ if __name__ == "__main__":
 
     print("-" * 50)
     print(f"m {m}")
-    print(f"n {n}")
+    print(f"na {na}")
     print(f"k {k}")
     print(f"dp {dp}")
     print(f"eps_0 {eps_0}")
     print("-" * 50)
 
-    test_result_dict = run_bloom(m, n, k, dp=dp, eps_0=eps_0)
+    test_result_dict = run_bloom(m, na, k, dp=dp, eps_0=eps_0)
 
     if args.output_path is not None:
         with open(args.output_path, "w") as f:

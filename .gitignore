@@ -3,6 +3,6 @@ note.txt
 logs/
 notebooks/figs/
 notebooks/pdfs/
-log_data/
+# log_data/
 old_logs/
 

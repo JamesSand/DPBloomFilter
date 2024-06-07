@@ -15,7 +15,7 @@ mkdir -p $log_data_dir
 # base setting log2(m)=20, n=1e5, k=8
 
 # log2m=20
-n=1e5
+na=1e5
 k=8
 
 log2m_values=(20 21 22 23 24)
@@ -27,7 +27,7 @@ for log2m in "${log2m_values[@]}"; do
 
         nohup python bloom_filter.py \
             --log2m $log2m \
-            --n $n \
+            --na $na \
             --k $k \
             --dp True \
             --eps_0 $eps_0  \

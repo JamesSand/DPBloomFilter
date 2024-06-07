@@ -1,13 +1,16 @@
 
 # conda activate galore
 
+log_data_dir="log_data"
+mkdir -p $log_data_dir
+
 python bloom_filter.py \
-    --m_exp 20 \
-    --n 1e5 \
+    --log2m 20 \
+    --na 1e5 \
     --k 7 \
     --dp True \
     --eps_0 10 \
-    --output_path "log_data/demo.json"
+    --output_path "${log_data_dir}/demo.json"
 
 
 # python bloom_filter.py \
