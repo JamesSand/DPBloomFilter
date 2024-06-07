@@ -5,4 +5,5 @@ notebooks/figs/
 notebooks/pdfs/
 # log_data/
 old_logs/
+draw/figs
 
