@@ -88,17 +88,19 @@ def gen_single_pdf(target_key):
         diff_value2list_dict[dict_key] = value_list
 
     font_size = 20
-    line_width=5.0
-    marker_size=13
+    line_width=3.0
+    # marker_size=13
     color_list = ["#ffc470", "#f6a865", "#ee8d5b", "#e57250", "#dd5746"]
-    # color_list = [
-    # "#ff0000",
-    # "#c80d17",
-    # "#921a2e",
-    # "#5c2745",
-    # "#26355d",
-    # ]
     marker_list = ["o", "D", "^", "p", "X"]
+    line_style_dict = {
+        "solid" : "solid",
+        "dotted" : "dotted",
+        "dashed" : "dashed",
+        "dashdot" : "dashdot",
+        'long dash with offset': (5, (10, 3)), 
+        'dashdotted' : (0, (3, 5, 1, 5)),
+    }
+    line_style_list = ["solid", "dotted", "dashed", 'dashdotted', 'long dash with offset']
 
     # create a new figure
     plt.figure()
@@ -112,16 +114,19 @@ def gen_single_pdf(target_key):
     x_data = list(range(21))
     for i, key in enumerate(key_list):
         y_data = diff_value2list_dict[key]
-        plt.plot(x_data, y_data, label=f"{lengend_name}={key}", marker=marker_list[i], color=color_list[i], linewidth=line_width, markersize=marker_size)
+        plt.plot(x_data, y_data, label=f"{lengend_name}={key}", marker=marker_list[i], color=color_list[i], linewidth=line_width, markersize=9, markerfacecolor="None",
+         markeredgecolor=color_list[i], markeredgewidth=2, linestyle=line_style_dict[line_style_list[i]])
 
     plt.grid(True)  # show grid
     # add legend
     plt.legend(fontsize=font_size, loc='upper right')
 
     # add title and labels for x and y
-    plt.title(title_name, fontsize=font_size)
-    plt.xlabel('Epsilon_0', fontsize=font_size)
-    plt.ylabel('Error Rate', fontsize=font_size)
+    plt.title(title_name, fontsize=font_size, fontweight='bold')
+    plt.xlabel('Epsilon_0', fontsize=font_size, fontweight='bold')
+    plt.ylabel('Error Rate', fontsize=font_size, fontweight='bold')
+
+    plt.minorticks_on()
 
     # set stick font size
     plt.xticks(fontsize=20)
