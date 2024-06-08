@@ -30,9 +30,9 @@ If you open `log_data/demo.json`, you will get something like:
 
 You can run the following code to run the trials on different m, na, and k.
 ```bash
-bash script/run_dp_diff_m.sh
-bash script/run_dp_diff_na.sh
-bash script/run_dp_diff_k.sh
+bash scripts/run_dp_diff_m.sh
+bash scripts/run_dp_diff_na.sh
+bash scripts/run_dp_diff_k.sh
 ```
 
 The results will be store under the following folders, respectively.
