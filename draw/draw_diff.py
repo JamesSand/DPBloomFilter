@@ -69,12 +69,7 @@ def gen_single_pdf(target_key):
         value_list = []
         for eps_0 in range(21):
 
-            if name == "diff_k":
-                k = dict_key
-            elif name == "diff_m":
-                log2m = dict_key
-            elif name == "diff_n":
-                n = dict_key
+            
 
             file_name = f"log2m_{log2m}_n_{n}_k_{k}_eps0_{eps_0}.json"
             # print(file_name)
@@ -147,10 +142,6 @@ def gen_single_pdf(target_key):
     # clean up plt
     plt.clf()
 
-
-# target_key = "random"
-# target_key = "inside"
-# target_key = "outside"
 
 target_key_values = ["random", "inside", "outside"]
 for target_key in target_key_values:

@@ -25,8 +25,8 @@ k_values=(1)
 # for log2m in "${log2m_values[@]}"; do
 for k in "${k_values[@]}"; do
     for eps_0 in {0..20}; do
-        log_path="${log_dir}/log2m_${log2m}_n_${n}_k_${k}_eps0_${eps_0}.txt"
-        log_data_path="${log_data_dir}/log2m_${log2m}_n_${n}_k_${k}_eps0_${eps_0}.json"
+        log_path="${log_dir}/log2m_${log2m}_n_${na}_k_${k}_eps0_${eps_0}.txt"
+        log_data_path="${log_data_dir}/log2m_${log2m}_n_${na}_k_${k}_eps0_${eps_0}.json"
 
         nohup python bloom_filter.py \
             --log2m $log2m \

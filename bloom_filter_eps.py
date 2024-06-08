@@ -160,6 +160,15 @@ def run_bloom(m, na, k, query_time=int(1e5), dp=False, eps_0=None):
 
     # test_bloom(bloom_filter, inserted_set, query_time, test_type="outside")
 
+def get_eps_0(m , na, k, eps):
+    # get N from json file
+
+    # calcualte eps_0
+    eps_0 = 0.0
+
+    return eps_0
+    
+
         
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -168,7 +177,8 @@ if __name__ == "__main__":
     parser.add_argument("--k", type=int, default=None)
 
     parser.add_argument("--dp", type=str, default="False")
-    parser.add_argument("--eps_0", type=float, default=None)
+    # parser.add_argument("--eps_0", type=float, default=None)
+    parser.add_argument("--eps", type=float, default=None)
 
     parser.add_argument("--output_path", type=str, default=None)
 
