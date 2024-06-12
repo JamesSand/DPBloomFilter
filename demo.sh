@@ -16,6 +16,7 @@ python bloom_filter_eps.py \
     --log2m 20 \
     --na 1e5 \
     --k 3 \
+    --N 3 \
     --dp True \
     --eps 10 \
     --delta 0.1 \
