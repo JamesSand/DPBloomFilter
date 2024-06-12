@@ -7,7 +7,7 @@ import sys
 from tqdm import tqdm
 import numpy as np
 import json
-from get_N_by_delta import get_N_by_delta
+# from get_N_by_delta import get_N_by_delta
 
 ############## global parameters #############
 seed = 42
