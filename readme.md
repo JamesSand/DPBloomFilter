@@ -48,6 +48,7 @@ log_data/eps_diff_k/*.json
 
 ## 3 Draw Figures for Error rate and Epsilon
 
+If you want to draw eps as your x-axis, and let N determined by delta,
 You can choose one from the following commands to draw your figures. 
 ```bash
 python draw/draw_diff.py --prefix "eps" --name "diff_m" --save_type "pdf"
@@ -58,6 +59,8 @@ python draw/draw_diff.py --prefix "eps" --name "diff_k" --save_type "pdf"
 python draw/draw_diff.py --prefix "eps" --name "diff_k" --save_type "png"
 ```
 
+If you want to draw eps as your x-axis, and let N = K,
+You can choose one from the following commands to draw your figures. 
 ```bash
 python draw/draw_diff.py --prefix "NeqK" --name "diff_m" --save_type "pdf"
 python draw/draw_diff.py --prefix "NeqK" --name "diff_m" --save_type "png"
