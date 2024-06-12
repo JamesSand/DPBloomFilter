@@ -7,7 +7,7 @@ import sys
 from tqdm import tqdm
 import numpy as np
 import json
-from get_N_by_delta import get_N_by_delta
+# from get_N_by_delta import get_N_by_delta
 
 ############## global parameters #############
 seed = 42
@@ -202,9 +202,10 @@ if __name__ == "__main__":
     if args.N is not None:
         N = args.N 
     else:
+        N = args.k
         # get N by delta
-        if args.delta is not None:
-            N = get_N_by_delta(m, na, k, args.delta)
+        # if args.delta is not None:
+          #  N = get_N_by_delta(m, na, k, args.delta)
     
     eps_0 = args.eps / N
 
@@ -230,6 +231,5 @@ if __name__ == "__main__":
     if args.output_path is not None:
         with open(args.output_path, "w") as f:
             json.dump(test_result_dict, f, indent=4)
-
 
 
