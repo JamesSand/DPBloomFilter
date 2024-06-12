@@ -50,12 +50,21 @@ log_data/eps_diff_k/*.json
 
 You can choose one from the following commands to draw your figures. 
 ```bash
-python draw/draw_diff.py --name "diff_m" --save_type "pdf"
-python draw/draw_diff.py --name "diff_m" --save_type "png"
-python draw/draw_diff.py --name "diff_na" --save_type "pdf"
-python draw/draw_diff.py --name "diff_na" --save_type "png"
-python draw/draw_diff.py --name "diff_k" --save_type "pdf"
-python draw/draw_diff.py --name "diff_k" --save_type "png"
+python draw/draw_diff.py --prefix "eps" --name "diff_m" --save_type "pdf"
+python draw/draw_diff.py --prefix "eps" --name "diff_m" --save_type "png"
+python draw/draw_diff.py --prefix "eps" --name "diff_na" --save_type "pdf"
+python draw/draw_diff.py --prefix "eps" --name "diff_na" --save_type "png"
+python draw/draw_diff.py --prefix "eps" --name "diff_k" --save_type "pdf"
+python draw/draw_diff.py --prefix "eps" --name "diff_k" --save_type "png"
+```
+
+```bash
+python draw/draw_diff.py --prefix "NeqK" --name "diff_m" --save_type "pdf"
+python draw/draw_diff.py --prefix "NeqK" --name "diff_m" --save_type "png"
+python draw/draw_diff.py --prefix "NeqK" --name "diff_na" --save_type "pdf"
+python draw/draw_diff.py --prefix "NeqK" --name "diff_na" --save_type "png"
+python draw/draw_diff.py --prefix "NeqK" --name "diff_k" --save_type "pdf"
+python draw/draw_diff.py --prefix "NeqK" --name "diff_k" --save_type "png"
 ```
 
 ## 4 Draw Figures for Distribution of W. 

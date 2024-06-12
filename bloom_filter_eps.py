@@ -177,6 +177,8 @@ if __name__ == "__main__":
     parser.add_argument("--na", type=float, required=True)
     parser.add_argument("--k", type=int, default=None)
 
+    parser.add_argument("--N", type=int, default=None)
+
     parser.add_argument("--dp", type=str, default="False")
     # parser.add_argument("--eps_0", type=float, default=None)
     parser.add_argument("--eps", type=float, default=None)
@@ -197,13 +199,14 @@ if __name__ == "__main__":
         if k == 0:
             k += 1
 
-    # get N by delta
-    if args.delta is not None:
-        N = get_N_by_delta(m, na, k, args.delta)
-        eps_0 = args.eps / N
-        # print(f"m: {m} na: {na} k: {k} delta: {args.delta}")
-        # print(f"N: {N}")
-        # exit(0)
+    if args.N is not None:
+        N = args.N 
+    else:
+        # get N by delta
+        if args.delta is not None:
+            N = get_N_by_delta(m, na, k, args.delta)
+    
+    eps_0 = args.eps / N
 
     dp = args.dp == "True"
     # eps_0 = args.eps_0

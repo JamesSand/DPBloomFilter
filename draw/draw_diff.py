@@ -7,6 +7,7 @@ from matplotlib import ticker
 import argparse
 
 parser = argparse.ArgumentParser()
+parser.add_argument("--prefix", type=str, required=True)
 parser.add_argument('--name', type=str, required=True)
 parser.add_argument("--save_type", type=str, required=True)
 
@@ -40,32 +41,22 @@ k_values = [1, 2, 3, 4, 5]
 # eps_values = [int(i * 2) for i in range(11)]
 eps_values = [int(i * 3) for i in range(11)]
 
-# eps_0_values = [0.0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3.0]
-
-# name="eps_diff_m"
-# lengend_name = "logm"
-# key_list = log2m_values
-
-# name="eps_diff_k"
-# lengend_name="k"
-# key_list = k_values
-
-# name="eps_diff_na"
-# lengend_name="|A|"
-# key_list = na_values
-
 if args.name == "diff_m":
-    name="eps_diff_m"
+    # name="eps_diff_m"
     lengend_name = "logm"
     key_list = log2m_values
 elif args.name == "diff_k":
-    name="eps_diff_k"
+    # name="eps_diff_k"
     lengend_name="k"
     key_list = k_values
 elif args.name == "diff_na":
-    name="eps_diff_na"
+    # name="eps_diff_na"
     lengend_name="|A|"
     key_list = na_values
+else:
+    raise f"unknown args.name {args.name}"
+
+name = f'{args.prefix}_{args.name}'
 
 
 font_size = 20
@@ -92,7 +83,7 @@ def gen_single_pdf(target_key):
     # k=8
     k=3
 
-    save_file_name=f"eps_{name}_{target_key_mapping[target_key]}.pdf"
+    save_file_name=f"{args.prefix}_{args.name}_{target_key_mapping[target_key]}"
     title_name = f"{title_mapping[target_key]} with {name.replace('_', ' ').replace('na', '|A|').replace('eps', '')}"
 
 
@@ -109,11 +100,11 @@ def gen_single_pdf(target_key):
 
     for dict_key in key_list:
 
-        if name == "eps_diff_k":
+        if args.name == "diff_k":
             k = dict_key
-        elif name == "eps_diff_m":
+        elif args.name == "diff_m":
             log2m = dict_key
-        elif name == "eps_diff_na":
+        elif args.name == "diff_na":
             na = dict_key
         else:
             raise f"unknow name {name}"
@@ -139,7 +130,9 @@ def gen_single_pdf(target_key):
 
 
     # create a new figure
+    # plt.figure(figsize=(8, 6))
     plt.figure()
+    # plt.figure(figsize=(16, 12))
     # get current axis
     ax = plt.gca()
     # turn background into lightgrey
@@ -180,12 +173,6 @@ def gen_single_pdf(target_key):
 
     # # # show fig
     # plt.show()
-
-    # raise
-
-    # save_fig_path = os.path.join("eps_figs", save_file_name)
-    # print(save_fig_path)
-    # plt.savefig(save_fig_path, format='pdf', bbox_inches='tight', pad_inches=0.05)
 
     if args.save_type == "pdf":
         save_fig_path = os.path.join(save_fig_dir, f"{save_file_name}.pdf")
