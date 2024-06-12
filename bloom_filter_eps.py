@@ -202,9 +202,10 @@ if __name__ == "__main__":
     if args.N is not None:
         N = args.N 
     else:
+        N = args.k
         # get N by delta
-        if args.delta is not None:
-            N = get_N_by_delta(m, na, k, args.delta)
+        # if args.delta is not None:
+          #  N = get_N_by_delta(m, na, k, args.delta)
     
     eps_0 = args.eps / N
 
