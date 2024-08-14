@@ -11,6 +11,9 @@ pip install -r requirements.txt
 ## 2 Run Experiments
 
 ### 2.1 Run a single trial
+
+If you want to run a single demo trial, you can run the following command.
+
 ```bash
 bash demo.sh
 ```
@@ -21,49 +24,36 @@ If you open `log_data/demo.json`, you will get something like:
 ```
 {
     "random": <Total Error Rate>,
-    "inside": <True Negative Error Rate>,
+    "inside": <False Negative Error Rate>,
     "outside": <False Positive Error Rate>
 }
 ```
 
 ### 2.2 Run multiple trials
 
-Warning: the following command will start python programm running in the background. 
-
-You need to kill they via command line to stop them. So be careful running the following commands. 
-
 You can run the following code to run the trials on different m, na, and k.
 
 ```bash
-bash scripts/run_NeqK_diff_m.sh
-bash scripts/run_NeqK_diff_na.sh
-bash scripts/run_NeqK_diff_k.sh
+bash scripts/run_eps_diff_m.sh
+bash scripts/run_eps_diff_na.sh
+bash scripts/run_eps_diff_k.sh
 ```
 
 The results will be store under the following folders, respectively.
 ```
-log_data/NeqK_diff_m/*.json
-log_data/NeqK_diff_na/*.json
-log_data/NeqK_diff_k/*.json
+log_data/eps_diff_m/*.json
+log_data/eps_diff_na/*.json
+log_data/eps_diff_k/*.json
 ```
 
 ## 3 Draw Figures for Error rate and Epsilon
 
-If you want to draw eps as your x-axis, and let N = K,
-You can choose one from the following commands to draw your figures. 
-```bash
-python draw/draw_diff.py --prefix "NeqK" --name "diff_m" --save_type "pdf"
-python draw/draw_diff.py --prefix "NeqK" --name "diff_m" --save_type "png"
-python draw/draw_diff.py --prefix "NeqK" --name "diff_na" --save_type "pdf"
-python draw/draw_diff.py --prefix "NeqK" --name "diff_na" --save_type "png"
-python draw/draw_diff.py --prefix "NeqK" --name "diff_k" --save_type "pdf"
-python draw/draw_diff.py --prefix "NeqK" --name "diff_k" --save_type "png"
-```
+Please refer to the instructions in ``notebooks/draw_figs.ipynb``.
 
-## 4 Draw Figures for Distribution of W. 
+## 4 Explanation for some code files
 
-Choose from the following command
-```bash
-python draw/draw_w.py --save_type "pdf"
-python draw/draw_w.py --save_type "png"
-```
+> If you just want run experiments, please ignore this section, and follow the instructions in Section 2 and 3.
+
+- ``bloom_filter_eps.py`` contains the implementation of the DP Bloom Filter. 
+- ``get_N_by_delta.py`` contains code for calculating $1 - \delta$ quntail $N$ according to the distribution of the random variable $W$. More details about the distribution of $W$ can be found in our paper.
+
