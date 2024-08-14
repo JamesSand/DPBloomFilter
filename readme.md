@@ -1,6 +1,6 @@
 # DP Bloom Filter
 
-## 1 Installation
+## 1 Enviornment Setup
 
 Current Code is test on Python 3.10.14 
 
@@ -8,7 +8,7 @@ Current Code is test on Python 3.10.14
 pip install -r requirements.txt
 ```
 
-## 2 Run
+## 2 Run Experiments
 
 ### 2.1 Run a single trial
 ```bash

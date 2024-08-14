@@ -34,14 +34,10 @@ def Z_cond_a_b(z, a, b, m):
 # the function return is the PMF of W
 def W_PMF(m, na, k):
     Y_prob_list = Y_PMF(m, k)
-    # print(f"Y prob list {Y_prob_list}")
     p0 = (1 - 1 / m) ** ((na - 1) * k)
-    # print(f"p0 {p0}")
-    # print(f"2k * p0 {2 * k * p0}")
     # w value range is [0, 2k]
     prob_list = []
     for w in range(0, 2 * k + 1):
-        # print(f"w {w}")
         # calcualte probability for each w
         prob = 0.0
         for a in range(1, k + 1):
@@ -60,17 +56,12 @@ def W_PMF(m, na, k):
 
                     cur_prob = item1 * item2
 
-                    # if w == 3 and cur_prob > 0.0:
-                    #     print(f"z = {z}, a = {a}, b = {b}, w = {w}, prob = {cur_prob}")
-                    #     print(f"item1 {item1} item2 {item2}")
-                    #     print(f"Z cond {Z_cond_a_b(z, a, b, m)} Y1 {Y_prob_list[a - 1]} Y2 {Y_prob_list[a - 1]}")
-
                     prob += cur_prob
 
         prob_list.append(prob)
     return prob_list
 
-def get_N_by_delta(m , na, k, delta):
+def get_N_by_delta(m, na, k, delta):
     w_prob_list = W_PMF(m, na, k)
     print(f"W prob list {w_prob_list}")
     print(sum(w_prob_list))

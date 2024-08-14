@@ -7,7 +7,7 @@ import sys
 from tqdm import tqdm
 import numpy as np
 import json
-# from get_N_by_delta import get_N_by_delta
+from get_N_by_delta import get_N_by_delta
 
 ############## global parameters #############
 seed = 42
@@ -153,23 +153,6 @@ def run_bloom(m, na, k, query_time=int(1e5), dp=False, eps_0=None):
 
     return test_result_dict
 
-
-    # test_bloom(bloom_filter, inserted_set, query_time, test_type="random")
-    # print("before inside")
-    # test_bloom(bloom_filter, inserted_set, query_time, test_type="inside")
-    # print("after inside")
-
-    # test_bloom(bloom_filter, inserted_set, query_time, test_type="outside")
-
-def get_eps_0(m , na, k, eps):
-    # get N from json file
-
-    # calcualte eps_0
-    eps_0 = 0.0
-
-    return eps_0
-    
-
         
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -202,15 +185,13 @@ if __name__ == "__main__":
     if args.N is not None:
         N = args.N 
     else:
-        N = args.k
         # get N by delta
-        # if args.delta is not None:
-          #  N = get_N_by_delta(m, na, k, args.delta)
+        if args.delta is not None:
+           N = get_N_by_delta(m, na, k, args.delta)
     
     eps_0 = args.eps / N
 
-    dp = args.dp == "True"
-    # eps_0 = args.eps_0
+    dp = (args.dp == "True")
 
     # sanity check
     if dp:
